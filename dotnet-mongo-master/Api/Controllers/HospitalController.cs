@@ -53,6 +53,14 @@ namespace Api.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        public ActionResult AtualizarOcupacao([FromBody] HospitalDto dto)
+        {
+            var hospital = new Hospital(dto.Nome, dto.Ocupacao, dto.Latitude, dto.Longitude, dto.Recuperados, dto.Obitos);
+            _hospitalCollection.UpdateOne(Builders<Hospital>.Filter.Where(_ => _.Nome == dto.Nome), Builders<Hospital>.Update.Set("ocupacao", dto.Ocupacao));
+            return Ok();
+        }
+
         [HttpDelete("{Nome}")]
         public ActionResult Delete(string nome_hospital)
         {
