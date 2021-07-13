@@ -39,6 +39,14 @@ namespace Api.Data
                     i.SetIgnoreExtraElements(true);
                 });
             }
+            if (!BsonClassMap.IsClassMapRegistered(typeof(Hospital)))
+            {
+                BsonClassMap.RegisterClassMap<Hospital>(i =>
+                {
+                    i.AutoMap();
+                    i.SetIgnoreExtraElements(true);
+                });
+            }
         }
     }
 }
